@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+unsigned long get_a_hexadecimal() {
+    char c;
+    unsigned long long int result = 0;
+    do {
+        cin.get(c);
+        result *= 16;
+        if (c >= '0' && c <= '9')
+            result += c - '0';
+        else if (c >= 'A' && c <= 'F')
+            result += c - 'A' + 10;
+        else if (c != '\n')
+            return 0;
+        else
+            result /= 16;
+    } while (c != '\n');
+    return result;
+}
+
+int main() {
+    cout << get_a_hexadecimal() << endl;
+    return 0;
+}
