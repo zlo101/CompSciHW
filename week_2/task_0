@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 int minus_of_int(int x)
 {
@@ -8,6 +9,7 @@ int minus_of_int(int x)
 int main()
 {
 	int x;
-	std::cin >> x;
-	std::cout << minus_of_int(x) << '\n';
+	cin >> x;
+	cout << minus_of_int(x) << endl;
+    return 0;
 }
