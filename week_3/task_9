@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+struct Vector {
+    int x, y, z;
+};
+
+Vector sum(Vector a, Vector b) {
+    Vector ans = { a.x + b.x, a.y + b.y, a.z + b.z };
+    return ans;
+}
+
+const int N = 10;
+
+int main() {
+    Vector result = { 0, 0, 0 };
+    for (int i = 0; i < N; ++i) {
+        Vector tmp;
+        cin >> tmp.x >> tmp.y >> tmp.z;
+        result = sum(result, tmp);
+    }
+    cout << result.x << ' ' << result.y << ' ' << result.z << '\n';
+}
