@@ -1,0 +1,11 @@
+#include <iostream>
+using namespace std;
+
+bool do_some_work(int* a, int* b);
+
+int main() {
+    int a, b;
+    cin >> a >> b;
+    cout << (do_some_work(&a, &b) ? a - b : a + b) << '\n';
+    return 0;
+}
