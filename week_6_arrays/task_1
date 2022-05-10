@@ -1,0 +1,26 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n, sum = 0;
+    cin >> n;
+
+    vector<int> main_arr(n);
+    vector<int> res_arr;
+
+    for (auto& x : main_arr) {
+        cin >> x;
+        sum += x;
+    }
+    int avg = sum / n;
+
+    for (auto x = main_arr.begin(); x < main_arr.end(); x++)
+        if (*x > avg)
+            res_arr.push_back(x - main_arr.begin());
+
+    cout << res_arr.size() << '\n';
+    for (auto ans_i : res_arr)
+        cout << ans_i << ' ';
+    return 0;
+}
