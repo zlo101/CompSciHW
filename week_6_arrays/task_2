@@ -1,0 +1,68 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Line {
+private:
+    vector<bool> the_array;
+
+public:
+    Line() {}
+
+    void worry(int i) {
+        this->the_array.at(i) = true;
+    }
+
+    void quiet(int i) {
+        this->the_array.at(i) = false;
+    }
+
+    void come_leave(int k) {
+        if (k >= 0)
+            for (int i = 0; i < k; ++i)
+                this->the_array.push_back(false);
+        else
+            for (int i = 0; i < abs(k); ++i)
+                this->the_array.pop_back();
+    }
+
+    int worry_count() {
+        int ans = 0;
+        for (auto item : the_array)
+            ans += (item ? 1 : 0);
+        return ans;
+    }
+};
+
+int main() {
+    int Q;
+    cin >> Q;
+    vector<int> count;
+
+    Line* line = new Line();
+
+    for (int i = 0; i < Q; i++) {
+        string word;
+        cin >> word;
+
+        if (word == "WORRY") {
+            int i;
+            cin >> i;
+            line->worry(i);
+        } else if (word == "QUIET") {
+            int i;
+            cin >> i;
+            line->quiet(i);
+        } else if (word == "COME") {
+            int k;
+            cin >> k;
+            line->come_leave(k);
+        } else if (word == "WORRY_COUNT") {
+            count.push_back(line->worry_count());
+        }
+    }
+
+    for (auto item : count)
+        cout << item << "\n";
+}
