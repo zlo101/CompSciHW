@@ -1,0 +1,13 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int memory(unsigned long long x) {
+    return ceil((log2(x) + 20) / 8);
+}
+
+int main() {
+    unsigned long long n;
+    cin >> n;
+    cout << memory(n);
+}
