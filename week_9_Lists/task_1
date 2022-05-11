@@ -1,0 +1,16 @@
+#include <iostream>
+#include <list>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    list<int> line(n);
+
+    for_each(line.begin(), line.end(), [](int& item) { cin >> item; });
+    for_each(line.rbegin(), line.rend(), [](int item) { cout << item << ' '; });
+
+    return 0;
+}
