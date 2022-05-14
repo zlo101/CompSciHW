@@ -1,0 +1,79 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+double integral_1(double a, double b, unsigned int n, double f(double)) {
+    double dx = (b - a) / n, res = 0, c = 0, x = a;
+    while (x <= b) {
+        double y = dx * f(x) - c;
+        double t = res + y;
+        c = (t - res) - y;
+        res = t;
+        x += dx;
+    }
+    return res;
+}
+
+double integral_2(double a, double b, unsigned int n, double f(double)) {
+    double dx = (b - a) / n, res = 0, c = 0, x = a;
+    while (x <= b) {
+        double y = dx * (f(x) + f(x + dx)) / 2.0 - c;
+        double t = res + y;
+        c = (t - res) - y;
+        res = t;
+        x += dx;
+    }
+    return res;
+}
+
+double integral_3(double a, double b, unsigned int n, double f(double)) {
+    double dx = (b - a) / n, res = 0, c = 0, x = a;
+    while (x <= b) {
+        double	x1 = x - dx, y1 = f(x1),
+                x2 = x, y2 = f(x2),
+                x3 = x + dx, y3 = f(x3);
+        double	a_ = (y3 - (x3 * (y2 - y1) + x2 * y1 - x1 * y2) / (x2 - x1)) / (x3 * (x3 - x1 - x2) + x1 * x2),
+                b_ = (y2 - y1) / (x2 - x1) - a_ * (x1 + x2),
+                c_ = (x2 * y1 - x1 * y2) / (x2 - x1) + a_ * x1 * x2;
+        double y = 	a_ * pow(x3, 3) / 3.0 + b_ * pow(x3, 2) / 2.0 + c_ * x3 -
+                      a_ * pow(x2, 3) / 3.0 - b_ * pow(x2, 2) / 2.0 - c_ * x2 - c;
+        double t = res + y;
+        c = (t - res) - y;
+        res = t;
+        x += dx;
+    }
+    return res;
+}
+
+double pow(double x){ return pow(x, 2); }
+
+int main() {
+    double a, b;
+    unsigned int incr;
+    cout << "Please, clarify the bounds of integration by typing in the two values separately in the same line." << "\n";
+    cout << "Also type in the numbers of increments in the same line:" << "\n";
+
+    cin >> a >> b >> incr;
+    cout << "For the function sin(x):\n";
+    cout << integral_1(a, b, incr, sin) << "\n";
+    cout << integral_2(a, b, incr, sin) << "\n";
+    cout << integral_3(a, b, incr, sin) << "\n";
+
+    cout << "--> Repeat for the next function:" << "\n";
+
+    cin >> a >> b >> incr;
+    cout << "For the function x^2:\n";
+    cout << integral_1(a, b, incr, pow) << "\n";
+    cout << integral_2(a, b, incr, pow) << "\n";
+    cout << integral_3(a, b, incr, pow) << "\n";
+
+    cout << "--> Repeat for the next function:" << "\n";
+    
+    cin >> a >> b >> incr;
+    cout << "For the function ln(x):\n";
+    cout << integral_1(a, b, incr, log) << "\n";
+    cout << integral_2(a, b, incr, log) << "\n";
+    cout << integral_3(a, b, incr, log) << "\n";
+
+    return 0;
+}
