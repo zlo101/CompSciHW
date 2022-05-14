@@ -1,0 +1,23 @@
+// 'Stack' Problem
+
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int main() {
+    int value;
+    
+    stack<int> main;
+    
+    while (cin >> value && value) {
+        if (value > 0)
+            main.push(value);
+        else if (!main.empty()) {
+            main.top() += value;
+            if (main.top() <= 0)
+                main.pop();
+        }
+    }
+    cout << main.size() << " " << (main.empty() ? -1 : main.top());
+    return 0;
+}
