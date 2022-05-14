@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, num = 0;
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        int inp;
+        cin >> inp;
+        if (abs(inp) > abs(num)) {
+            num = inp;
+        }
+    }
+    cout << num;
+    return 0;
+}
