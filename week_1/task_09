@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int ans = 0;
+    char item;
+    do {
+        cin >> item;
+        if (item == '1')
+            ans++;
+    } while (item == '0' or item == '1');
+    cout << ans << '\n';
+}
