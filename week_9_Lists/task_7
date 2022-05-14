@@ -1,0 +1,30 @@
+#include <iostream>
+#include <list>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n, m;
+    cin >> n;
+
+    list<int> line(n), a;
+
+    for_each(line.begin(), line.end(), [&a](int& item) {
+        cin >> item;
+        a.merge(list<int>(1, item));
+    });
+
+    cin >> m;
+    while (a.size() > m)
+        a.pop_front();
+
+    for_each(line.begin(), line.end(), [&a](int item) {
+        auto f = find(a.begin(), a.end(), item);
+        if (f != a.end()) { 
+            cout << item << ' ';
+            a.erase(f);
+        }
+    });
+
+    return 0;
+}
