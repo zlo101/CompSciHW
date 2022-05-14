@@ -1,0 +1,21 @@
+// 'Unique Numbers' Problem
+
+#include <iostream>
+#include <unordered_set>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    unordered_set<int> mod_list;
+    generate_n(inserter(mod_list, mod_list.begin()), n, [](){
+        int x;
+        cin >> x;
+        return x;
+    });
+
+    cout << mod_list.size();
+    return 0;
+}
