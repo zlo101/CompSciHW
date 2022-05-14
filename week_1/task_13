@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n_1, n_2, n_3;
+    cin >> n_1 >> n_2 >> n_3;
+    int p_1 = n_1, p_2 = n_2, p_3 = n_3;
+
+    while (p_1) {
+        if (p_1 < p_2) {
+            p_1 ^= p_2;
+            p_2 ^= p_1;
+            p_1 ^= p_2;
+        }
+        p_1 %= p_2;
+    }
+
+    p_1 = n_1 * n_2 / p_2;
+    n_1 = p_1;
+
+    while (p_1) {
+        if (p_1 < p_3) {
+            p_1 ^= p_3;
+            p_3 ^= p_1;
+            p_1 ^= p_3;
+        }
+        p_1 %= p_3;
+    }
+
+    p_1 = n_1 * n_3 / p_3;
+    cout << p_1 << '\n';
+    return 0;
+}
