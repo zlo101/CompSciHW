@@ -1,0 +1,28 @@
+#include <iostream>
+#include <list>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n, m;
+    cin >> n;
+
+    list<int> a;
+
+    for (int i = 0; i < n; i++){
+        int item;
+        cin >> item;
+        a.merge(list<int>(1, item));
+    }
+
+
+    cin >> m;
+    while (a.size() > m)
+        a.pop_front();
+
+    for_each(a.begin(), a.end(), [](int x) {
+        cout << x << ' ';
+    });
+
+    return 0;
+}
